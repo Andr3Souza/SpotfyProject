@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const electron = require("electron");
+      let { ipcRenderer } = electron;
+
+      let btn = document.getElementById("scream");
+      let btnMinimize = document.getElementById("btn-minimize");
+      let btnMaxmize = document.getElementById("btn-maxmize");
+      let miniScream = document.getElementById("mini-scream");
+
+      console.log(btn);
+
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        ipcRenderer.send("resize", 300, 500);
+        miniScream.style.display = "block";
+      });
+    });
+  </script>
+  <head>
+    <meta charset="UTF-8" />
+    <title>SpotfyLikeTest</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body id="scream">
+    <div id="mini-scream" class="mini-scream" style="display: none;">
+      <button
+        class="button-maxmize"
+        style="display: none;"
+        id="btn-maxmize"
+        type="button"
+        name="buttonMaximize"
+      ></button>
+      <img
+        src="https://cdn130.picsart.com/273220664000211.png?type=webp&to=min&r=640"
+      />
+      <h1>
+        SpotfyLike
+      </h1>
+    </div>
+    <button
+      style="display: none;"
+      id="btn-minimize"
+      type="button"
+      name="buttonMinimize"
+      class="button-minimize"
+    >
+      Minimize
+    </button>
+  </body>
+</html>

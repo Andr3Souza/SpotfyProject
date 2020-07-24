@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <script>
+    const electron = require("electron");
+    let { ipcRenderer } = electron;
+    let btn = document.getElementById("btn");
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      ipcRenderer.send("resize", 600, 800);
+    });
+  </script>
+  <head>
+    <meta charset="UTF-8" />
+    <title>SpotfyLikeTest</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <button
+      id="btn"
+      class="buttonHover"
+      type="button"
+      name="button"
+      onclick="openWindow()"
+    >
+      open windows
+    </button>
+  </body>
+</html>

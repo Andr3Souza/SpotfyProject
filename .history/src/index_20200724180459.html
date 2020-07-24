@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const electron = require("electron");
+      let { ipcRenderer } = electron;
+
+      let btn = document.getElementById("scream");
+      let btnMinimize = document.getElementById("btn-minimize");
+      let btnMaxmize = document.getElementById("btn-maxmize");
+      let miniScream = document.getElementById("mini-scream");
+
+      console.log(btn);
+
+      btn.addEventListener("mouseover", function (e) {
+        e.preventDefault();
+        ipcRenderer.send("resize", 300, 500);
+        miniScream.style.display = "block";
+      });
+      btnMaxmize.addEventListener("click", function (z) {
+        z.preventDefault();
+        ipcRenderer.send("resize", 800, 600);
+      });
+      btnMinimize.addEventListener("click", function (f) {
+        f.preventDefault();
+        ipcRenderer.send("resize", 30, 40);
+        btnMinimize.style.display = "none";
+        miniScream.style.display = "none";
+      });
+    });
+  </script>
+  <head>
+    <meta charset="UTF-8" />
+    <title>SpotfyLikeTest</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body id="scream">
+    <div id="mini-scream">
+      <button
+        class="button-maxmize"
+        id="btn-maxmize"
+        type="button"
+        name="buttonMaximize"
+      ></button>
+      <img
+        src="https://cdn130.picsart.com/273220664000211.png?type=webp&to=min&r=640"
+      />
+      <h1>
+        SpotfyLike
+      </h1>
+    </div>
+    <button
+      id="btn-minimize"
+      type="button"
+      name="buttonMinimize"
+      class="button-minimize"
+    >
+      Minimize
+    </button>
+  </body>
+</html>
